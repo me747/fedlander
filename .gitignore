@@ -1,0 +1,17 @@
+# python bytecode
+__pycache__/
+*.pyc
+*.pyo  
+
+# virtual env
+venv/
+env/
+.venv/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
