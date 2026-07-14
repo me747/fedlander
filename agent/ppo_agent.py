@@ -54,6 +54,7 @@ class PPOAgent:
             gamma=0.99,           
             verbose=verbose,
             seed=seed,
+            device="cpu", # PPO is primarily intended to run on the CPU when not using a CNN policy, so forcing it use CPU 
         )
     
     def train(self, total_timesteps):
