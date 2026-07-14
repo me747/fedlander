@@ -80,6 +80,7 @@ def evaluate_global_model(server, eval_configs, n_envs=2, n_episodes=5):
         agent = PPOAgent(
             gravity=cfg["gravity"],
             wind_power=cfg["wind_power"],
+            turbulence_power=cfg.get("turbulence_power", 0.0),
             n_envs=n_envs,
             verbose=0,
         )
@@ -161,8 +162,16 @@ def run_fedrl(
     client_ids = list(range(len(clients)))
     print(f"created {len(clients)} clients\n")
     
-    # eval on first 3 configs (base envs, no wind)
-    eval_configs = client_configs[:3]
+    # eval on various configs
+    eval_configs = [
+    {"gravity": -9.8,  "wind_power": 0.0,  "turbulence_power": 0.0, "name": "earth_no_wind"},
+    {"gravity": -9.8,  "wind_power": 6.0,  "turbulence_power": 0.0, "name": "earth_wind6"},
+    {"gravity": -3.73, "wind_power": 5.0,  "turbulence_power": 0.0, "name": "mars_wind5"},
+    {"gravity": -3.73, "wind_power": 8.0,  "turbulence_power": 0.0, "name": "mars_wind8"},
+    {"gravity": -1.62, "wind_power": 15.0, "turbulence_power": 0.0, "name": "moon_wind15"},
+    {"gravity": -1.62, "wind_power": 7.0,  "turbulence_power": 0.0, "name": "moon_wind7"},
+    {"gravity": -9.8,  "wind_power": 0.0,  "turbulence_power": 1.5, "name": "turbulence"},
+]
     
     # log metrics
     os.makedirs(results_dir, exist_ok=True)
@@ -185,7 +194,7 @@ def run_fedrl(
             # b) train each selected client locally
             client_weight_updates = []
             client_step_counts = []
-            select_clients = [selected_ids for i in selected_clients]
+            
             for client in selected_clients:
                 # give client curr. global model
                 global_weights = server.get_global_weights()

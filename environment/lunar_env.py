@@ -84,7 +84,7 @@ def get_client_envs(n_envs_per_client=4, seed=42):
     # derived clients, same planets under different wind conditions (to introduce real-world heterogenity)
     rng = np.random.default_rng(seed)
     for planet_name, config in PLANET_CONFIGS.items():
-        for i in range(2):  # 2 extra clients per planet i.e. 6 derived clients
+        for i in range(6):  # 6 extra clients per planet i.e. 18 derived clients (total 21)
             wind = float(rng.uniform(0, 15))  # random wind b/w 0-15 mag.
             clients.append({
                 "name": f"{planet_name}_wind_{wind:.1f}",
