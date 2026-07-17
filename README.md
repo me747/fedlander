@@ -40,11 +40,6 @@ fedlander/
 
 (Some pieces above are still being rebuilt/reorganized - see Status section.)
 
-## Setup
-
-```
-pip install -r requirements.txt
-```
 
 ## Results (from original project runs)
 
@@ -58,7 +53,6 @@ The baseline (no privacy) model and the less-noisy DP variants (ε=500, ε=1000,
 
 ### Generalization across planet/wind scenarios
 
-![Evaluation Across Scenarios]
 ## Performance Comparison (Mean Reward)
 
 | Scenario            | Baseline FL | DP eps=5000 | DP eps=500 | DP eps=100 | Single Earth | Single Mars | Single Moon |
@@ -84,4 +78,4 @@ Actively rebuilding this solo right now. The environment and PPO agent pieces wo
 
 ## Acknowledgments
 
-This project builds on the original team repo from CS 595, maintained together with teammates: [CS595-Project-FedRL](https://github.com/henriquem27/CS595-Project-FedRL). That version went through several iterations (v1 through v5), progressively adding differential privacy, more parallel environments, and a "gradual weight adjustment" trick to stabilize training under noise, eventually landing on a setup with 21 total clients (Earth/Mars/Moon plus wind-variant derivatives) trained on Chameleon Cloud. This repo is my solo attempt to take that same core idea and rebuild it.
+This project builds on the original team repo from CS 595, maintained together with teammates: [CS595-Project-FedRL](https://github.com/henriquem27/CS595-Project-FedRL), that version went through several iterations (v1 through v5), progressively adding differential privacy, more parallel environments, and a "gradual weight adjustment" trick to stabilize training under noise, eventually landing on a setup with 21 total clients (Earth/Mars/Moon plus wind-variant derivatives) trained on Chameleon Cloud. This repo is my solo attempt to take that same core idea and rebuild it.
